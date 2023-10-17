@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: xiuji
  * @Date: 2023-08-25 19:45:55
- * @LastEditTime: 2023-10-17 11:07:36
+ * @LastEditTime: 2023-10-17 14:15:12
  * @LastEditors: Do not edit
 -->
 <template>
@@ -22,20 +22,20 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useUserStore } from "@/store";
-// import { http } from "@/utils/http";
+import { http } from "@/utils/http";
 const userStore = useUserStore();
 const title = ref("Hello uniapp");
 const changeValue = (value: number) => {
   console.log("返回数值：", value);
   userStore.setNumber(value);
 };
-// const getData = async () => {
-//   const res = http({
-//     method: "GET",
-//     url: "/test/hello",
-//   });
-//   console.log(res);
-// };
+const getData = async () => {
+  const res = http({
+    method: "GET",
+    url: "/test/hello",
+  });
+  console.log(res);
+};
 </script>
 
 <style>
