@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: xiuji
  * @Date: 2023-08-25 19:45:55
- * @LastEditTime: 2023-10-17 14:15:12
+ * @LastEditTime: 2023-10-17 15:29:35
  * @LastEditors: Do not edit
 -->
 <template>
@@ -15,27 +15,25 @@
       <uni-number-box v-model="userStore.age" @change="changeValue" />
     </view>
     <button @click="userStore.resetNumber" size="mini" plain>重置数字</button>
-    <!-- <button m-5 @click="getData" size="mini" plain>网络请求</button> -->
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import { useUserStore } from "@/store";
-import { http } from "@/utils/http";
+import { get } from "@/utils/http"
 const userStore = useUserStore();
 const title = ref("Hello uniapp");
 const changeValue = (value: number) => {
   console.log("返回数值：", value);
   userStore.setNumber(value);
 };
+
 const getData = async () => {
-  const res = http({
-    method: "GET",
-    url: "/test/hello",
-  });
+  const res = await get("/api/getData");
   console.log(res);
 };
+// getData();
 </script>
 
 <style>

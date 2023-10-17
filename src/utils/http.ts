@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: xiuji
  * @Date: 2023-10-17 11:04:32
- * @LastEditTime: 2023-10-17 11:06:27
+ * @LastEditTime: 2023-10-17 15:23:59
  * @LastEditors: Do not edit
  */
 const baseURL = "http://localhost:3000";
@@ -29,13 +29,13 @@ const httpInterceptor = {
 uni.addInterceptor("request", httpInterceptor);
 uni.addInterceptor("uploadFile", httpInterceptor);
 
-interface Response<T = unknown> {
+interface Response<T = any> {
     code: string;
     msg: string;
     data: T;
 }
 
-export const http = <T>(options: UniApp.RequestOptions) => {
+const http = <T>(options: UniApp.RequestOptions) => {
     return new Promise<Response<T>>((resolve, reject) => {
         uni.request({
             ...options,
@@ -44,6 +44,9 @@ export const http = <T>(options: UniApp.RequestOptions) => {
                     resolve(res.data as Response<T>);
                 } else if (res.statusCode === 401) {
                     //TODO:跳转到登录页
+                    uni.navigateTo({
+                        url: "/pages/login/login",
+                    });
                     reject(res);
                 } else {
                     uni.showToast({
@@ -58,8 +61,19 @@ export const http = <T>(options: UniApp.RequestOptions) => {
                     icon: "none",
                     title: "网络错误",
                 });
+                uni.navigateTo({
+                    url: "/pages/login/login",
+                });
                 reject(err);
             },
         });
     });
 };
+
+export const get = <T = any>(url: string, data?: any) => {
+    return http<T>({
+        method: "GET",
+        url,
+        data,
+    });
+}
