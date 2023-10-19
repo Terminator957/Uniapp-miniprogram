@@ -8,27 +8,18 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/login/login",
-			"style": {
-				"navigationBarTitleText": "login"
-			}
+			"path": "pages/login/login"
 		},
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
+			"path": "pages/index/index"
 		},
 		{
-			"path": "pages/mine/mine",
-			"style": {
-				"navigationBarTitleText": "mine"
-			}
+			"path": "pages/mine/mine"
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "智恒运维",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
@@ -47,5 +38,18 @@
 				"text": "我的"
 			}
 		]
-	}
+	},
+	"subPackages": [ // 分包
+		{
+			"root": "views/page_property",
+			"pages": [
+				{
+					"path": "property",
+					"style": {
+						"navigationBarTitleText": "资产"
+					}
+				}
+			]
+		}
+	]
 }

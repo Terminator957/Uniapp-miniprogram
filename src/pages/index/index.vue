@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: xiuji
  * @Date: 2023-08-25 19:45:55
- * @LastEditTime: 2023-10-17 15:29:35
+ * @LastEditTime: 2023-10-19 16:06:49
  * @LastEditors: Do not edit
 -->
 <template>
@@ -11,10 +11,10 @@
     <view>
       <text>{{ title }}</text>
     </view>
-    <view m-5>
+    <view class="m-5">
       <uni-number-box v-model="userStore.age" @change="changeValue" />
     </view>
-    <button @click="userStore.resetNumber" size="mini" plain>重置数字</button>
+    <button m-5 @click="userStore.resetNumber" size="mini" plain>重置数字</button>
   </view>
 </template>
 

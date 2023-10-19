@@ -2,16 +2,16 @@
  * @Description: 
  * @Author: xiuji
  * @Date: 2023-08-25 19:45:55
- * @LastEditTime: 2023-10-17 14:16:13
+ * @LastEditTime: 2023-10-19 16:32:14
  * @LastEditors: Do not edit
  */
 import { defineConfig } from "vite";
 import uni from "@dcloudio/vite-plugin-uni";
-import Unocss from "unocss/vite";
+import UnoCSS from "unocss/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [uni(), Unocss()],
+  plugins: [uni(), UnoCSS()],
   server: {
     proxy: { // 本地开发环境通过代理实现跨域，生产环境使用 nginx 转发
       '/webManage/': {

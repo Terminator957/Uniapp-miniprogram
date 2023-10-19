@@ -2,27 +2,24 @@
  * @Description: 
  * @Author: xiuji
  * @Date: 2023-10-17 15:05:08
- * @LastEditTime: 2023-10-17 16:49:06
+ * @LastEditTime: 2023-10-19 17:18:45
  * @LastEditors: Do not edit
 -->
 <template>
   <view class="login">
-    {{ name }}
-    <uni-section title="name" type="line">
-      <view class="example">
+    <uni-section :title="name" type="line">
+      <view class="example m-5">
         <!-- 基础表单校验 -->
-        <uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData">
-          <uni-forms-item label="姓名" required name="name">
-            <uni-easyinput v-model="valiFormData.name" placeholder="请输入姓名" />
+        <uni-forms ref="valiForm" :rules="(rules as UniHelper.UniFormsRules)" :modelValue="valiFormData"
+          validateTrigger="blur">
+          <uni-forms-item label="用户名" required name="name">
+            <uni-easyinput v-model="valiFormData.name" placeholder="请输入用户名" />
           </uni-forms-item>
-          <uni-forms-item label="年龄" required name="age">
-            <uni-easyinput v-model="valiFormData.age" placeholder="请输入年龄" />
-          </uni-forms-item>
-          <uni-forms-item label="自我介绍" name="introduction">
-            <uni-easyinput type="textarea" v-model="valiFormData.introduction" placeholder="请输入自我介绍" />
+          <uni-forms-item label="密码" required name="password">
+            <uni-easyinput v-model="valiFormData.password" placeholder="请输入密码" />
           </uni-forms-item>
         </uni-forms>
-        <button type="primary" @click="submit('valiForm')">提交</button>
+        <button type="primary" @tap="submit">提交</button>
       </view>
     </uni-section>
   </view>
@@ -30,49 +27,56 @@
 
 <script lang="ts">
 import { ref, reactive, toRefs } from 'vue';
+import type { Ref } from 'vue';
+import { onLoad, onShow } from '@dcloudio/uni-app';
 export default {
   setup() {
-    const valiForm = ref(null)
+    const valiForm: Ref<UniHelper.UniFormsProps | null> = ref(null);
     const data = reactive({
-      name: '登录',
+      name: '用户登录',
       // 校验表单数据
       valiFormData: {
         name: '',
-        age: '',
-        introduction: '',
+        password: ''
       },
       // 校验规则
       rules: {
         name: {
           rules: [{
             required: true,
-            errorMessage: '姓名不能为空'
+            errorMessage: '用户名不能为空'
           }]
         },
-        age: {
+        password: {
           rules: [{
             required: true,
-            errorMessage: '年龄不能为空'
+            errorMessage: '密码不能为空'
           }, {
             format: 'number',
-            errorMessage: '年龄只能输入数字'
+            errorMessage: '只能输入数字'
           }]
         }
       },
     })
 
-
     const submit = () => {
-      console.log(valiForm.value);
-      valiForm.value.validate((valid: boolean) => {
-        if (valid) {
-          console.log('校验成功');
-        } else {
-          console.log('校验失败');
-        }
+      (valiForm.value as any).validate().then((res: any) => {
+        console.log(res);
+        uni.switchTab({
+          url: '/pages/index/index'
+        })
+      }).catch((err: any) => {
+        console.log(err);
       })
-
     }
+
+    onLoad(() => {
+      console.log('页面加载完成');
+    })
+
+    onShow(() => {
+      console.log('页面显示');
+    })
 
     return {
       ...toRefs(data),

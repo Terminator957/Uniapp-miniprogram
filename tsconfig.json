@@ -17,7 +17,8 @@
       "@types/wechat-miniprogram",
       "@uni-helper/uni-app-types",
       "@uni-helper/uni-ui-types"
-    ]
+    ],
+    "ignoreDeprecations": "5.0" // 添加这个选项来忽略废弃警告
   },
   "vueCompilerOptions": {
     "nativeTags": [

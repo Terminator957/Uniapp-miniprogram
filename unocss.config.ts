@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: xiuji
+ * @Date: 2023-10-17 11:10:52
+ * @LastEditTime: 2023-10-19 17:17:53
+ * @LastEditors: Do not edit
+ */
 import presetWeapp from "unocss-preset-weapp";
 import {
   extractorAttributify,
