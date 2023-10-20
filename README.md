@@ -17,10 +17,10 @@
 3. pnpm 版本 8.x
 
 # 克隆项目
-git clone http://36.155.115.57:8096/wangxiuji/webmanage-uniapp.git
+git clone [http://36.155.115.57:8096/wangxiuji/webmanage-uniapp.git](https://github.com/Terminator957/Uniapp-miniprogram.git)
 
 # 进入项目目录
-cd webmanage-uniapp
+cd Uniapp-miniprogram
 
 # 安装依赖
 pnpm i
